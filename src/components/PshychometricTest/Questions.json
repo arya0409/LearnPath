@@ -1,0 +1,112 @@
+[
+  {
+    "id": 1,
+    "question": "I enjoy solving logical problems and puzzles.",
+    "options": [
+      { "text": "Strongly Agree", "placement": 5, "masters": 3, "entrepreneur": 2, "govt": 3 },
+      { "text": "Agree", "placement": 4, "masters": 3, "entrepreneur": 2, "govt": 3 },
+      { "text": "Neutral", "placement": 3, "masters": 3, "entrepreneur": 3, "govt": 3 },
+      { "text": "Disagree", "placement": 2, "masters": 4, "entrepreneur": 4, "govt": 4 },
+      { "text": "Strongly Disagree", "placement": 1, "masters": 5, "entrepreneur": 5, "govt": 5 }
+    ]
+  },
+  {
+    "id": 2,
+    "question": "I prefer doing research and studying in depth about a topic.",
+    "options": [
+      { "text": "Strongly Agree", "placement": 2, "masters": 5, "entrepreneur": 3, "govt": 3 },
+      { "text": "Agree", "placement": 3, "masters": 4, "entrepreneur": 3, "govt": 3 },
+      { "text": "Neutral", "placement": 3, "masters": 3, "entrepreneur": 3, "govt": 3 },
+      { "text": "Disagree", "placement": 4, "masters": 2, "entrepreneur": 4, "govt": 4 },
+      { "text": "Strongly Disagree", "placement": 5, "masters": 1, "entrepreneur": 5, "govt": 5 }
+    ]
+  },
+  {
+    "id": 3,
+    "question": "I like working with new technologies and tools frequently.",
+    "options": [
+      { "text": "Strongly Agree", "placement": 5, "masters": 4, "entrepreneur": 5, "govt": 2 },
+      { "text": "Agree", "placement": 4, "masters": 3, "entrepreneur": 4, "govt": 3 },
+      { "text": "Neutral", "placement": 3, "masters": 3, "entrepreneur": 3, "govt": 3 },
+      { "text": "Disagree", "placement": 2, "masters": 3, "entrepreneur": 2, "govt": 4 },
+      { "text": "Strongly Disagree", "placement": 1, "masters": 2, "entrepreneur": 1, "govt": 5 }
+    ]
+  },
+  {
+    "id": 4,
+    "question": "I am interested in teaching, mentoring, or research.",
+    "options": [
+      { "text": "Strongly Agree", "placement": 3, "masters": 5, "entrepreneur": 2, "govt": 4 },
+      { "text": "Agree", "placement": 3, "masters": 4, "entrepreneur": 3, "govt": 4 },
+      { "text": "Neutral", "placement": 3, "masters": 3, "entrepreneur": 3, "govt": 3 },
+      { "text": "Disagree", "placement": 4, "masters": 2, "entrepreneur": 4, "govt": 3 },
+      { "text": "Strongly Disagree", "placement": 5, "masters": 1, "entrepreneur": 5, "govt": 2 }
+    ]
+  },
+  {
+    "id": 5,
+    "question": "I enjoy working in teams and communicating with people.",
+    "options": [
+      { "text": "Strongly Agree", "placement": 5, "masters": 3, "entrepreneur": 5, "govt": 3 },
+      { "text": "Agree", "placement": 4, "masters": 3, "entrepreneur": 4, "govt": 3 },
+      { "text": "Neutral", "placement": 3, "masters": 3, "entrepreneur": 3, "govt": 3 },
+      { "text": "Disagree", "placement": 2, "masters": 3, "entrepreneur": 2, "govt": 4 },
+      { "text": "Strongly Disagree", "placement": 1, "masters": 2, "entrepreneur": 1, "govt": 5 }
+    ]
+  },
+  {
+    "id": 6,
+    "question": "I like preparing for competitive exams and government posts.",
+    "options": [
+      { "text": "Strongly Agree", "placement": 3, "masters": 3, "entrepreneur": 2, "govt": 5 },
+      { "text": "Agree", "placement": 3, "masters": 3, "entrepreneur": 3, "govt": 4 },
+      { "text": "Neutral", "placement": 3, "masters": 3, "entrepreneur": 3, "govt": 3 },
+      { "text": "Disagree", "placement": 4, "masters": 3, "entrepreneur": 3, "govt": 2 },
+      { "text": "Strongly Disagree", "placement": 5, "masters": 3, "entrepreneur": 3, "govt": 1 }
+    ]
+  },
+  {
+    "id": 7,
+    "question": "I want to start my own company or build innovative products.",
+    "options": [
+      { "text": "Strongly Agree", "placement": 3, "masters": 3, "entrepreneur": 5, "govt": 1 },
+      { "text": "Agree", "placement": 3, "masters": 3, "entrepreneur": 4, "govt": 2 },
+      { "text": "Neutral", "placement": 3, "masters": 3, "entrepreneur": 3, "govt": 3 },
+      { "text": "Disagree", "placement": 4, "masters": 3, "entrepreneur": 2, "govt": 4 },
+      { "text": "Strongly Disagree", "placement": 5, "masters": 3, "entrepreneur": 1, "govt": 5 }
+    ]
+  },
+  {
+    "id": 8,
+    "question": "I am motivated by practical, real-world projects over theory.",
+    "options": [
+      { "text": "Strongly Agree", "placement": 5, "masters": 3, "entrepreneur": 5, "govt": 3 },
+      { "text": "Agree", "placement": 4, "masters": 3, "entrepreneur": 4, "govt": 3 },
+      { "text": "Neutral", "placement": 3, "masters": 3, "entrepreneur": 3, "govt": 3 },
+      { "text": "Disagree", "placement": 2, "masters": 4, "entrepreneur": 2, "govt": 4 },
+      { "text": "Strongly Disagree", "placement": 1, "masters": 5, "entrepreneur": 1, "govt": 5 }
+    ]
+  },
+  {
+    "id": 9,
+    "question": "I want to study abroad or in top research institutions.",
+    "options": [
+      { "text": "Strongly Agree", "placement": 2, "masters": 5, "entrepreneur": 2, "govt": 3 },
+      { "text": "Agree", "placement": 3, "masters": 4, "entrepreneur": 3, "govt": 3 },
+      { "text": "Neutral", "placement": 3, "masters": 3, "entrepreneur": 3, "govt": 3 },
+      { "text": "Disagree", "placement": 4, "masters": 2, "entrepreneur": 3, "govt": 4 },
+      { "text": "Strongly Disagree", "placement": 5, "masters": 1, "entrepreneur": 4, "govt": 5 }
+    ]
+  },
+  {
+    "id": 10,
+    "question": "I like exploring multiple domains rather than focusing on one path.",
+    "options": [
+      { "text": "Strongly Agree", "placement": 3, "masters": 3, "entrepreneur": 5, "govt": 2 },
+      { "text": "Agree", "placement": 3, "masters": 3, "entrepreneur": 4, "govt": 3 },
+      { "text": "Neutral", "placement": 3, "masters": 3, "entrepreneur": 3, "govt": 3 },
+      { "text": "Disagree", "placement": 4, "masters": 3, "entrepreneur": 2, "govt": 4 },
+      { "text": "Strongly Disagree", "placement": 5, "masters": 3, "entrepreneur": 1, "govt": 5 }
+    ]
+  }
+]
