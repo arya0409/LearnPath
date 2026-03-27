@@ -1,0 +1,30 @@
+spring.application.name=Backend
+
+# Database Configuration
+# Create a database named 'LearnPath' in PostgreSQL
+spring.datasource.url=jdbc:postgresql://localhost:5432/LearnPath
+spring.datasource.username=postgres
+spring.datasource.password=YOUR_PASSWORD
+spring.jpa.hibernate.ddl-auto=update
+spring.jpa.show-sql=true
+spring.jpa.properties.hibernate.dialect=org.hibernate.dialect.PostgreSQLDialect
+
+# Google OAuth2 Client Configuration
+# Generate these in Google Cloud Console
+spring.security.oauth2.client.registration.google.client-id=YOUR_CLIENT_ID
+spring.security.oauth2.client.registration.google.client-secret=YOUR_CLIENT_SECRET
+spring.security.oauth2.client.registration.google.scope=profile,email
+spring.security.oauth2.client.registration.google.redirect-uri=http://localhost:8080/login/oauth2/code/google
+
+# JWT Configuration
+# Use a long random string for the secret
+app.auth.tokenSecret=YOUR_JWT_SECRET
+app.auth.tokenExpirationMsec=86400000
+
+# CORS Configuration
+# React frontend URL
+app.cors.allowedOrigins=http://localhost:3000
+
+# OAuth2 Redirect URI
+# Frontend route to handle the token redirect
+app.oauth2.authorizedRedirectUris=http://localhost:3000/oauth2/redirect
