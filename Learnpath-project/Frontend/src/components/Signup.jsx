@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import axios from 'axios';
+
 function Signup() {
   const navigate = useNavigate();
   const [formData, setFormData] = useState({
@@ -13,10 +15,22 @@ function Signup() {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log('Signup:', formData);
-      navigate('/profile'); 
+    try {
+      const response = await axios.post('http://localhost:8080/auth/signup', formData);
+      if (response.data.success) {
+        alert('Signup successful! Please login.');
+        navigate('/login');
+      }
+    } catch (error) {
+      console.error('Signup error:', error);
+      if (error.response && error.response.data && error.response.data.message) {
+        alert('Signup failed: ' + error.response.data.message);
+      } else {
+        alert('Signup failed. Please try again.');
+      }
+    }
   };
 //onChange → handleChange → setFormData
 
