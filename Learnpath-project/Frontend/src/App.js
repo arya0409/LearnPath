@@ -13,6 +13,7 @@ import Dashboard from './pages/Dashboard';
 import OAuth2RedirectHandler from './components/OAuth2RedirectHandler';
 import Psychometric from "./components/PshychometricTest/Pshychometric";
 import PsychometricResult from "./components/PshychometricTest/PsychometricResult";
+import FaqWidget from "./components/FaqWidget";
 function App() { 
   return (
     <Router>
@@ -43,6 +44,7 @@ function App() {
           
         </Routes>
       </div>
+      <FaqWidget />
     </Router>
   );
 }
