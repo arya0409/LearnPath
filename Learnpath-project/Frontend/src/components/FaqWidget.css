@@ -1,0 +1,76 @@
+.faq-widget-container {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  z-index: 9999;
+}
+
+.faq-floating-btn {
+  width: 60px;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.2s;
+}
+
+.faq-floating-btn:hover {
+  transform: scale(1.1);
+}
+
+.faq-chat-window {
+  width: 350px;
+  height: 450px;
+  background-color: white;
+  border-radius: 12px;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+}
+
+.faq-chat-header {
+  border-top-left-radius: 12px;
+  border-top-right-radius: 12px;
+}
+
+.faq-chat-body {
+  flex: 1;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.message-container {
+  display: flex;
+  width: 100%;
+}
+
+.message-container.user {
+  justify-content: flex-end;
+}
+
+.message-container.bot {
+  justify-content: flex-start;
+}
+
+.message-bubble {
+  max-width: 80%;
+  padding: 8px 12px;
+  border-radius: 15px;
+  font-size: 0.95rem;
+  word-wrap: break-word;
+}
+
+.message-container.user .message-bubble {
+  border-bottom-right-radius: 2px;
+}
+
+.message-container.bot .message-bubble {
+  border-bottom-left-radius: 2px;
+}
+
+.faq-chat-footer {
+  background-color: white;
+}
