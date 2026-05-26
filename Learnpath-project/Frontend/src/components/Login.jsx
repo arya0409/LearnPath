@@ -1,18 +1,28 @@
 import React, { useState } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
 
 function Login() {
     const navigate = useNavigate(); //  ADD THIS
 
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const handleSubmit = (e) => {
+
+  const handleSubmit = async (e) => {
     //prevnt refreshing page so preventDefault
     e.preventDefault();
-    //print login ,for testing prpose
-    console.log('Login:', { email, password });
-      navigate('/profile');  
+    try {
+      const response = await axios.post('http://localhost:8080/auth/login', { email, password });
+      const { accessToken } = response.data;
+      if (accessToken) {
+        localStorage.setItem('accessToken', accessToken);
+        navigate('/profile');
+      }
+    } catch (error) {
+      console.error('Login error:', error);
+      alert('Login failed. Please check your credentials.');
+    }
   };
   return (
     <div className="container mt-5" style={{ maxWidth: '400px' }}>
