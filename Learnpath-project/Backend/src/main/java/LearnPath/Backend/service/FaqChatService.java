@@ -40,7 +40,6 @@ public class FaqChatService {
             }
         }
 
-        // 2. Ultimate Fallback (No Gemini, pure static map)
         return STRICT_FALLBACK;
     }
 }
