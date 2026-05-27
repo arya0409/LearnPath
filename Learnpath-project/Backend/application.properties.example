@@ -29,6 +29,7 @@ app.cors.allowedOrigins=http://localhost:3000
 # Frontend route to handle the token redirect
 app.oauth2.authorizedRedirectUris=http://localhost:3000/oauth2/redirect
 
+
 # Spring AI Vertex AI Gemini Configuration
-spring.ai.vertex.ai.gemini.project-id=YOUR_GOOGLE_CLOUD_PROJECT_ID
+spring.ai.vertex.ai.gemini.project-id=test-project-id
 spring.ai.vertex.ai.gemini.location=us-central1
