@@ -1,5 +1,5 @@
 import React from 'react';
-import { Target, User, Rocket, Lightbulb, BookOpen, ExternalLink, Edit } from 'lucide-react';
+import { MapPinIcon as Target, UserIcon as User, RocketLaunchIcon as Rocket, LightBulbIcon as Lightbulb, BookOpenIcon as BookOpen, ArrowTopRightOnSquareIcon as ExternalLink, PencilIcon as Edit } from '@heroicons/react/24/outline';
 
 const Dashboard = () => {
   return (

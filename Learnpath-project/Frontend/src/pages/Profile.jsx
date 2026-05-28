@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { User, AlertCircle } from 'lucide-react';
+import { UserIcon as User, ExclamationCircleIcon as AlertCircle } from '@heroicons/react/24/outline';
 
 const Profile = () => {
   const navigate = useNavigate();

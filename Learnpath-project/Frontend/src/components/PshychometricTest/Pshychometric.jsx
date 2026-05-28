@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import Questions from "./Questions.json";
 import { useNavigate } from "react-router-dom";
-import { Brain, ArrowRight } from "lucide-react";
+import { CommandLineIcon as Brain, ArrowRightIcon as ArrowRight } from "@heroicons/react/24/outline";
 
 const Pshychometric = () => {
   const [current, setCurrent] = useState(0);

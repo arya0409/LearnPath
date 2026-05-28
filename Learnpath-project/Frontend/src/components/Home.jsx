@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { ArrowRight, Sparkles } from 'lucide-react';
+import { ArrowRightIcon as ArrowRight, SparklesIcon as Sparkles } from '@heroicons/react/24/outline';
 
 const Home = () => {
   return (

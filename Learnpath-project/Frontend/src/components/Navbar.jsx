@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { Moon, Sun, Menu, X } from 'lucide-react';
+import { MoonIcon as Moon, SunIcon as Sun, Bars3Icon as Menu, XMarkIcon as X } from '@heroicons/react/24/outline';
 import { useTheme } from '../context/ThemeContext';
 import logo from '../assets/logolearnpath.png';
 
