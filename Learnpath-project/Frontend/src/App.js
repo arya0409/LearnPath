@@ -13,12 +13,15 @@ import Dashboard from './pages/Dashboard';
 import OAuth2RedirectHandler from './components/OAuth2RedirectHandler';
 import Psychometric from "./components/PshychometricTest/Pshychometric";
 import PsychometricResult from "./components/PshychometricTest/PsychometricResult";
-import FaqWidget from "./components/FaqWidget";
+import { ThemeProvider } from './context/ThemeContext';
+
 function App() { 
   return (
-    <Router>
-      <MainNavbar />
-      <div className="container mt-4">
+    <ThemeProvider>
+      <Router>
+        <div className="min-h-screen transition-colors duration-200">
+          <MainNavbar />
+          <div className="container mx-auto px-4 mt-4">
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/login" element={<Login />} />
@@ -42,10 +45,11 @@ function App() {
           */}
           {/* <Route path="/industry-trends" element={<industrytrends />} /> */}
           
-        </Routes>
-      </div>
-      <FaqWidget />
-    </Router>
+          </Routes>
+        </div>
+        </div>
+      </Router>
+    </ThemeProvider>
   );
 }
 
