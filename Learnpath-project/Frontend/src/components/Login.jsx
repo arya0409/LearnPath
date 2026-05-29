@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
-import { EnvelopeIcon as Mail, LockClosedIcon as Lock, ArrowRightOnRectangleIcon as LogIn } from '@heroicons/react/24/outline';
+import { Mail, Lock, LogIn } from 'lucide-react';
 
 function Login() {
   const navigate = useNavigate();

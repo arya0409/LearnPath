@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
-import { EnvelopeIcon as Mail, LockClosedIcon as Lock, UserPlusIcon as UserPlus, UserIcon as User } from '@heroicons/react/24/outline';
+import { Mail, Lock, UserPlus, User } from 'lucide-react';
 
 function Signup() {
   const navigate = useNavigate();
@@ -14,7 +14,7 @@ function Signup() {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
     console.log('Signup:', formData);
     navigate('/profile');

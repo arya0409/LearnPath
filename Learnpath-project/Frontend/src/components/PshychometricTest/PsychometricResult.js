@@ -1,6 +1,6 @@
 import React from "react";
 import { useLocation, Link } from "react-router-dom";
-import { TrophyIcon as Trophy, ArrowRightIcon as ArrowRight, ChartBarIcon as BarChart3, BriefcaseIcon as Briefcase, AcademicCapIcon as GraduationCap, LightBulbIcon as Lightbulb, BuildingOfficeIcon as Building } from "@heroicons/react/24/outline";
+import { Trophy, ArrowRight, BarChart3, Briefcase, GraduationCap, Lightbulb, Building } from "lucide-react";
 
 const PsychometricResult = () => {
   const location = useLocation();

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Cog6ToothIcon as Settings, BookOpenIcon as BookOpen, AcademicCapIcon as GraduationCap, MapPinIcon as Target } from '@heroicons/react/24/outline';
+import { Settings, BookOpen, GraduationCap, Target } from 'lucide-react';
 
 const Profilesetup = () => {
   const navigate = useNavigate();
