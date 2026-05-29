@@ -14,12 +14,13 @@ import OAuth2RedirectHandler from './components/OAuth2RedirectHandler';
 import Psychometric from "./components/PshychometricTest/Pshychometric";
 import PsychometricResult from "./components/PshychometricTest/PsychometricResult";
 import { ThemeProvider } from './context/ThemeContext';
+import FaqWidget from './components/FaqWidget';
 
 function App() { 
   return (
     <ThemeProvider>
       <Router>
-        <div className="min-h-screen transition-colors duration-200">
+        <div className="min-h-screen transition-colors duration-200 relative pb-20">
           <MainNavbar />
           <div className="container mx-auto px-4 mt-4">
         <Routes>
@@ -47,6 +48,9 @@ function App() {
           
           </Routes>
         </div>
+
+        {/* Render globally across app */}
+        <FaqWidget />
         </div>
       </Router>
     </ThemeProvider>
