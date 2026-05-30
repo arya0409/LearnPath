@@ -1,7 +1,7 @@
 import React, { useState, useRef, useEffect } from 'react';
 import axios from 'axios';
+import { ChatBubbleLeftRightIcon, XMarkIcon, PaperAirplaneIcon } from '@heroicons/react/24/outline';
 import { API_BASE_URL } from '../api/api';
-import './FaqWidget.css';
 
 const FaqWidget = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -46,58 +46,85 @@ const FaqWidget = () => {
   };
 
   return (
-    <div className="faq-widget-container">
-      {isOpen && (
-        <div className="faq-chat-window shadow-lg">
-          <div className="faq-chat-header bg-primary text-white p-3 d-flex justify-content-between align-items-center">
-            <h5 className="mb-0">FAQ Support</h5>
-            <button className="btn-close btn-close-white" onClick={toggleChat} aria-label="Close"></button>
+    <div className="fixed bottom-6 right-6 z-50">
+      {/* Chat Window */}
+      <div
+        className={`transform transition-all duration-300 ease-in-out origin-bottom-right shadow-2xl rounded-2xl flex flex-col bg-surface-light dark:bg-surface-dark border border-gray-200 dark:border-slate-700 overflow-hidden w-80 sm:w-96 ${
+          isOpen ? 'scale-100 opacity-100 h-[500px] mb-4' : 'scale-0 opacity-0 h-0 w-0 mb-0 pointer-events-none'
+        }`}
+      >
+        {/* Header */}
+        <div className="bg-gradient-to-r from-primary to-secondary p-4 flex justify-between items-center text-white">
+          <div className="flex items-center gap-2">
+            <ChatBubbleLeftRightIcon className="w-6 h-6" />
+            <h5 className="font-semibold text-lg m-0">FAQ Support</h5>
           </div>
-
-          <div className="faq-chat-body p-3">
-            {messages.map((msg, index) => (
-              <div key={index} className={`message-container ${msg.sender}`}>
-                <div className={`message-bubble ${msg.sender === 'user' ? 'bg-primary text-white' : 'bg-light border'}`}>
-                  {msg.text}
-                </div>
-              </div>
-            ))}
-            {isLoading && (
-              <div className="message-container bot">
-                <div className="message-bubble bg-light border text-muted">
-                  Typing...
-                </div>
-              </div>
-            )}
-            <div ref={messagesEndRef} />
-          </div>
-
-          <form onSubmit={handleSendMessage} className="faq-chat-footer p-2 border-top d-flex gap-2">
-            <input
-              type="text"
-              className="form-control"
-              placeholder="Type your question..."
-              value={inputMessage}
-              onChange={(e) => setInputMessage(e.target.value)}
-              disabled={isLoading}
-            />
-            <button type="submit" className="btn btn-primary" disabled={isLoading || !inputMessage.trim()}>
-              Send
-            </button>
-          </form>
+          <button
+            onClick={toggleChat}
+            className="text-white hover:bg-white/20 p-1 rounded-full transition-colors focus:outline-none"
+            aria-label="Close chat"
+          >
+            <XMarkIcon className="w-6 h-6" />
+          </button>
         </div>
-      )}
 
-      {!isOpen && (
-        <button
-          className="faq-floating-btn btn btn-primary rounded-circle shadow-lg"
-          onClick={toggleChat}
-        >
-          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" className="bi bi-chat-dots-fill" viewBox="0 0 16 16">
-            <path d="M16 8c0 3.866-3.582 7-8 7a9 9 0 0 1-2.347-.306c-.584.296-1.925.864-4.181 1.234-.2.032-.352-.176-.273-.362.354-.836.674-1.95.77-2.966C.744 11.37 0 9.76 0 8c0-3.866 3.582-7 8-7s8 3.134 8 7M5 8a1 1 0 1 0-2 0 1 1 0 0 0 2 0m4 0a1 1 0 1 0-2 0 1 1 0 0 0 2 0m3 1a1 1 0 1 0 0-2 1 1 0 0 0 0 2"/>
-          </svg>
-        </button>
-      )}
+        {/* Chat Body */}
+        <div className="flex-1 overflow-y-auto p-4 space-y-4 bg-gray-50/50 dark:bg-slate-800/50">
+          {messages.map((msg, index) => (
+            <div key={index} className={`flex ${msg.sender === 'user' ? 'justify-end' : 'justify-start'}`}>
+              <div
+                className={`max-w-[80%] rounded-2xl px-4 py-2 shadow-sm ${
+                  msg.sender === 'user'
+                    ? 'bg-primary text-white rounded-br-sm'
+                    : 'bg-white dark:bg-slate-700 text-text-light dark:text-text-dark border border-gray-100 dark:border-slate-600 rounded-bl-sm'
+                }`}
+              >
+                <p className="text-sm whitespace-pre-wrap leading-relaxed">{msg.text}</p>
+              </div>
+            </div>
+          ))}
+          {isLoading && (
+            <div className="flex justify-start">
+              <div className="bg-white dark:bg-slate-700 border border-gray-100 dark:border-slate-600 rounded-2xl rounded-bl-sm px-4 py-3 shadow-sm flex items-center gap-2">
+                <div className="w-2 h-2 bg-gray-400 dark:bg-gray-500 rounded-full animate-bounce"></div>
+                <div className="w-2 h-2 bg-gray-400 dark:bg-gray-500 rounded-full animate-bounce delay-100"></div>
+                <div className="w-2 h-2 bg-gray-400 dark:bg-gray-500 rounded-full animate-bounce delay-200"></div>
+              </div>
+            </div>
+          )}
+          <div ref={messagesEndRef} />
+        </div>
+
+        {/* Input Footer */}
+        <form onSubmit={handleSendMessage} className="p-3 border-t border-gray-200 dark:border-slate-700 bg-surface-light dark:bg-surface-dark flex gap-2">
+          <input
+            type="text"
+            className="flex-1 bg-gray-100 dark:bg-slate-800 border-transparent focus:bg-white dark:focus:bg-slate-900 border focus:border-primary text-text-light dark:text-text-dark rounded-xl px-4 py-2 text-sm transition-all focus:outline-none"
+            placeholder="Type your question..."
+            value={inputMessage}
+            onChange={(e) => setInputMessage(e.target.value)}
+            disabled={isLoading}
+          />
+          <button
+            type="submit"
+            className="bg-primary hover:bg-primary-dark text-white rounded-xl p-2.5 transition-colors disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center focus:outline-none"
+            disabled={isLoading || !inputMessage.trim()}
+          >
+            <PaperAirplaneIcon className="w-5 h-5 -rotate-45" />
+          </button>
+        </form>
+      </div>
+
+      {/* Floating Action Button */}
+      <button
+        className={`bg-primary hover:bg-primary-dark text-white rounded-full p-4 shadow-lg hover:shadow-xl transition-all duration-300 focus:outline-none flex items-center justify-center ${
+          isOpen ? 'scale-0 opacity-0' : 'scale-100 opacity-100 hover:-translate-y-1'
+        }`}
+        onClick={toggleChat}
+        aria-label="Open chat"
+      >
+        <ChatBubbleLeftRightIcon className="w-7 h-7" />
+      </button>
     </div>
   );
 };

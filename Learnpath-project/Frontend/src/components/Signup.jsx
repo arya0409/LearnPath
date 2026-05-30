@@ -17,6 +17,10 @@ function Signup() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     console.log('Signup:', formData);
+    // Mock login logic for now: setting a fake token
+    localStorage.setItem('accessToken', 'fake-jwt-token');
+    // Dispatch a custom event to update navbar state across components immediately
+    window.dispatchEvent(new Event('auth-change'));
     navigate('/profile');
   };
 

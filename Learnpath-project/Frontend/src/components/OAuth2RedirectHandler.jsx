@@ -13,6 +13,7 @@ function OAuth2RedirectHandler() {
 
     if (token) {
       localStorage.setItem('accessToken', token);
+      window.dispatchEvent(new Event('auth-change'));
       navigate('/dashboard', { replace: true });
     } else {
       console.error("OAuth2 Login Failed", error);
@@ -21,11 +22,9 @@ function OAuth2RedirectHandler() {
   }, [location, navigate]);
 
   return (
-    <div className="d-flex justify-content-center align-items-center mt-5">
-      <div className="spinner-border text-primary" role="status">
-        <span className="visually-hidden">Loading...</span>
-      </div>
-      <span className="ms-2">Logging you in, please wait...</span>
+    <div className="min-h-screen flex flex-col justify-center items-center gap-4 bg-background-light dark:bg-background-dark text-text-light dark:text-text-dark">
+      <div className="w-12 h-12 border-4 border-primary border-t-transparent rounded-full animate-spin"></div>
+      <span className="font-medium">Logging you in, please wait...</span>
     </div>
   );
 }
