@@ -95,7 +95,7 @@ const MainNavbar = () => {
           <Nav className="mx-auto gap-3">
 
             <Nav.Link as={Link} to="/">Home</Nav.Link>
-            <Nav.Link as={Link} to="/industry-trends">
+            <Nav.Link as={Link} to="/IndustryTrends">
               Industry Trends
             </Nav.Link>
 

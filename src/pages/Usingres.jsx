@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { TrendingUp, Calendar, ExternalLink, RefreshCw, AlertCircle } from 'lucide-react';
 
-//  Import local JSON
+// ✅ Import local JSON
 import trendsData from './response.json';
 
 const shuffleArray = (array) => {
@@ -12,55 +12,14 @@ const shuffleArray = (array) => {
   }
   return shuffled;
 };
-//new domain data
 
-const domainData = {
-  CSE: {
-    skills: ["AI/ML", "Web Development", "Cloud", "Cybersecurity"],
-    careers: ["Software Engineer", "Data Scientist", "DevOps Engineer"]
-  },
-
-  Mechanical: {
-    skills: ["CAD", "SolidWorks", "Automation", "Manufacturing"],
-    careers: ["Design Engineer", "Production Engineer", "Automobile Engineer"]
-  },
-
-  Civil: {
-    skills: ["AutoCAD", "STAAD Pro", "Project Management", "Surveying"],
-    careers: ["Site Engineer", "Structural Engineer", "Govt Engineer"]
-  },
-
-  ENTC: {
-    skills: ["Embedded Systems", "VLSI", "IoT", "PCB Design"],
-    careers: ["Embedded Engineer", "VLSI Engineer", "IoT Developer"]
-  },
-
-  Electrical: {
-    skills: ["Power Systems", "PLC", "Automation", "Control Systems"],
-    careers: ["Electrical Engineer", "Automation Engineer", "PSU Engineer"]
-  }
-};
-const departmentKeywords = {
-  All: [],
-
-  CSE: ["AI", "Software", "Cloud", "Cybersecurity"],
-
-  Mechanical: ["Robotics", "Automation", "Electric Vehicle", "Manufacturing"],
-
-  Civil: ["Construction", "Infrastructure", "Smart City", "Sustainability"],
-
-  ENTC: ["IoT", "Semiconductor", "VLSI", "5G"],
-
-  Electrical: ["Renewable Energy", "Power Systems", "Battery", "Smart Grid"]
-};
-const IndustryTrends = () => {
+const Usingres = () => {
   const [trends, setTrends] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [lastUpdated, setLastUpdated] = useState(null);
-  const [selectedDepartment, setSelectedDepartment] = useState("All");
 
-  //  Replace API call with local data
+  // ✅ Replace API call with local data
   const fetchTrends = () => {
     setLoading(true);
     setError(null);
@@ -91,19 +50,7 @@ const IndustryTrends = () => {
       year: 'numeric' 
     });
   };
-  // for advancments
-const filteredTrends =
-  selectedDepartment === "All"
-    ? trends
-    : trends.filter((trend) =>
-        departmentKeywords[selectedDepartment].some((keyword) =>
-          (
-            trend.title + " " + trend.description
-          )
-            .toLowerCase()
-            .includes(keyword.toLowerCase())
-        )
-      );
+
   return (
       <div className="max-w-6xl mx-auto p-6">
         {/* Header */}
@@ -121,25 +68,6 @@ const filteredTrends =
             Refresh
           </button>
         </div>
-        //new updated
-        <div className="mb-4">
-  <label className="form-label fw-bold">
-    Select Department
-  </label>
-
-  <select
-    className="form-select"
-    value={selectedDepartment}
-    onChange={(e) => setSelectedDepartment(e.target.value)}
-  >
-    <option value="All">All Departments</option>
-    <option value="CSE">CSE / IT</option>
-    <option value="Mechanical">Mechanical</option>
-    <option value="Civil">Civil</option>
-    <option value="ENTC">ENTC</option>
-    <option value="Electrical">Electrical</option>
-  </select>
-</div>
   
         {/* Last Updated */}
         {lastUpdated && (
@@ -175,26 +103,27 @@ const filteredTrends =
         {/* Trends Grid */}
         {!loading && trends.length > 0 && (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {filteredTrends.map((trend, index) => (
-             <div key={index} className="card shadow-sm mb-4">
+            {trends.map((trend, index) => (
+              <div
+                key={index}
+                className="bg-white rounded-lg border border-gray-200 hover:shadow-lg transition-shadow overflow-hidden group"
+              >
                 {/* Image */}
                 {trend.urlToImage && (
                   <div className="w-full h-48 overflow-hidden bg-gray-100">
                     <img
-  src={trend.urlToImage}
-  alt={trend.title}
-  className="card-img-top"
-  style={{
-    height: "220px",
-    objectFit: "cover",
-    width: "100%"
-  }}
-/>
+                      src={trend.urlToImage}
+                      alt={trend.title}
+                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                      onError={(e) => {
+                        e.target.style.display = 'none';
+                      }}
+                    />
                   </div>
                 )}
   
                 {/* Content */}
-                <div className="card-body">
+                <div className="p-6">
                   <h3 className="font-semibold text-lg text-gray-900 mb-2 line-clamp-2">
                     {trend.title}
                   </h3>
@@ -214,13 +143,14 @@ const filteredTrends =
   
                   {/* Read More Link */}
                   <a
-  href={trend.url}
-  target="_blank"
-  rel="noopener noreferrer"
-  className="btn btn-primary"
->
-  Read Full Article
-</a>
+                    href={trend.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-2 text-blue-600 hover:text-blue-700 font-medium text-sm"
+                  >
+                    Read Full Article
+                    <ExternalLink className="w-4 h-4" />
+                  </a>
                 </div>
               </div>
             ))}
@@ -231,14 +161,12 @@ const filteredTrends =
         {!loading && !error && trends.length === 0 && (
           <div className="text-center py-12">
             <TrendingUp className="w-16 h-16 text-gray-300 mx-auto mb-4" />
-            <h3 className="text-lg font-semibold text-gray-900 mb-2">No trends found for selected department</h3>
-           <p className="text-muted">
-  No global trends available for {selectedDepartment}
-</p>
+            <h3 className="text-lg font-semibold text-gray-900 mb-2">No trends available</h3>
+            <p className="text-gray-600">Check back later for the latest tech trends.</p>
           </div>
         )}
       </div>
     );
   };
 
-export default IndustryTrends;
+export default Usingres;

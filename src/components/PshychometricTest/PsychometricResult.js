@@ -1,9 +1,9 @@
 import React from "react";
-import { useLocation } from "react-router-dom";
-
+import { useLocation, useNavigate } from "react-router-dom";
 const PsychometricResult = () => {
 
   const location = useLocation();
+  const navigate = useNavigate();
   const scores = location.state?.scores;
 
   if (!scores) {
@@ -20,6 +20,12 @@ const PsychometricResult = () => {
   else if (maxScore === masters) result = "Higher Studies (MS/MTech)";
   else if (maxScore === entrepreneur) result = "Startup / Entrepreneurship";
   else result = "Government Jobs";
+  let recommendedGoal = "";
+
+if (maxScore === placement) recommendedGoal = "placement";
+else if (maxScore === masters) recommendedGoal = "masters";
+else if (maxScore === entrepreneur) recommendedGoal = "startup";
+else recommendedGoal = "govt";
 
   return (
     <div style={{ textAlign: "center", marginTop: "50px" }}>
@@ -35,6 +41,20 @@ const PsychometricResult = () => {
       <p>Masters: {masters}</p>
       <p>Entrepreneur: {entrepreneur}</p>
       <p>Government: {govt}</p>
+      <button
+  onClick={() =>
+    navigate("/recommendation", {
+      state: { goal: recommendedGoal }
+    })
+  }
+  style={{
+    marginTop: "20px",
+    padding: "12px 20px",
+    cursor: "pointer"
+  }}
+>
+  Continue to Recommendation
+</button>
 
     </div>
   );
