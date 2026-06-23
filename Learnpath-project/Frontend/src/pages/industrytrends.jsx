@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { TrendingUp, Calendar, ExternalLink, RefreshCw, AlertCircle } from 'lucide-react';
+import { TrendingUp, Calendar, RefreshCw, AlertCircle } from 'lucide-react';
 
 //  Import local JSON
 import trendsData from './response.json';
@@ -11,34 +11,6 @@ const shuffleArray = (array) => {
     [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
   }
   return shuffled;
-};
-//new domain data
-
-const domainData = {
-  CSE: {
-    skills: ["AI/ML", "Web Development", "Cloud", "Cybersecurity"],
-    careers: ["Software Engineer", "Data Scientist", "DevOps Engineer"]
-  },
-
-  Mechanical: {
-    skills: ["CAD", "SolidWorks", "Automation", "Manufacturing"],
-    careers: ["Design Engineer", "Production Engineer", "Automobile Engineer"]
-  },
-
-  Civil: {
-    skills: ["AutoCAD", "STAAD Pro", "Project Management", "Surveying"],
-    careers: ["Site Engineer", "Structural Engineer", "Govt Engineer"]
-  },
-
-  ENTC: {
-    skills: ["Embedded Systems", "VLSI", "IoT", "PCB Design"],
-    careers: ["Embedded Engineer", "VLSI Engineer", "IoT Developer"]
-  },
-
-  Electrical: {
-    skills: ["Power Systems", "PLC", "Automation", "Control Systems"],
-    careers: ["Electrical Engineer", "Automation Engineer", "PSU Engineer"]
-  }
 };
 const departmentKeywords = {
   All: [],
