@@ -40,7 +40,7 @@ function App() {
          <Route path="/psychometric-test" element={<Psychometric />} />
         <Route path="/psychometric-result" element={<PsychometricResult />} /> 
         <Route path="/recommendation" element={<Recommendation />} />
-        <Route path="/industrytrends" element={<IndustryTrends />} />
+        <Route path="/industry-trends" element={<IndustryTrends />} />
 
 
 
