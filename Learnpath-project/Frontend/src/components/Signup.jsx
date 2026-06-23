@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
-import { useNavigate, Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { Mail, Lock, UserPlus, User } from 'lucide-react';
+import api from '../api/api';
 
 function Signup() {
   const navigate = useNavigate();
@@ -9,6 +10,8 @@ function Signup() {
     email: '',
     password: ''
   });
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState('');
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -16,12 +19,16 @@ function Signup() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log('Signup:', formData);
-    // Mock login logic for now: setting a fake token
-    localStorage.setItem('accessToken', 'fake-jwt-token');
-    // Dispatch a custom event to update navbar state across components immediately
-    window.dispatchEvent(new Event('auth-change'));
-    navigate('/profile');
+    setError('');
+    setLoading(true);
+    try {
+      await api.post('/auth/signup', formData);
+      navigate('/login', { state: { message: 'Account created successfully! Please log in.' } });
+    } catch (err) {
+      setError(err.response?.data?.message || 'Signup failed. Please try again.');
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -39,6 +46,11 @@ function Signup() {
             </div>
 
             <form onSubmit={handleSubmit} className="space-y-6">
+              {error && (
+                <div className="p-3 bg-red-50 border border-red-200 text-red-600 dark:bg-red-950/30 dark:border-red-900/50 dark:text-red-400 rounded-xl text-sm text-center">
+                  {error}
+                </div>
+              )}
               <div className="space-y-2">
                 <label className="text-sm font-medium text-text-light dark:text-text-dark">Full Name</label>
                 <div className="relative">
@@ -95,9 +107,10 @@ function Signup() {
 
               <button
                 type="submit"
-                className="w-full bg-green-600 hover:bg-green-700 text-white font-semibold py-3 px-4 rounded-xl shadow-md transition-all hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2 dark:focus:ring-offset-slate-900"
+                disabled={loading}
+                className="w-full bg-green-600 hover:bg-green-700 text-white font-semibold py-3 px-4 rounded-xl shadow-md transition-all hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2 dark:focus:ring-offset-slate-900 disabled:opacity-50 disabled:cursor-not-allowed"
               >
-                Sign Up
+                {loading ? 'Creating Account...' : 'Sign Up'}
               </button>
             </form>
           </div>

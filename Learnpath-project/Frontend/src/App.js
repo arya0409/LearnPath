@@ -6,7 +6,6 @@ import Login from './components/Login';
 import Signup from './components/Signup';
 // import Courses from './pages/courses';
 // import StudyMaterial from './pages/studymaterial';
-import IndustryTrends from './pages/industrytrends';
 import Profile from './pages/Profile';
 import  Profilesetup from './pages/Profilesetup';
 import Dashboard from './pages/Dashboard';

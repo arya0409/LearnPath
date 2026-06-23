@@ -38,6 +38,12 @@ public class User {
 
     private String providerId;
 
+    @Column(name = "email_verified", nullable = false)
+    private boolean emailVerified = false;
+
+    @Column(name = "verification_token")
+    private String verificationToken;
+
     @Column(name = "created_at", updatable = false)
     private LocalDateTime createdAt;
 

@@ -1,21 +1,34 @@
 import React, { useState } from 'react';
-import { useNavigate, Link } from 'react-router-dom';
+import { useNavigate, Link, useLocation } from 'react-router-dom';
 import { Mail, Lock, LogIn } from 'lucide-react';
+import api from '../api/api';
 
 function Login() {
   const navigate = useNavigate();
+  const location = useLocation();
+  const successMessage = location.state?.message || '';
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState('');
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log('Login:', { email, password });
-    // Mock login logic for now: setting a fake token
-    localStorage.setItem('accessToken', 'fake-jwt-token');
-    // Dispatch a custom event to update navbar state across components immediately
-    window.dispatchEvent(new Event('auth-change'));
-    navigate('/profile');
+    setError('');
+    setLoading(true);
+    try {
+      const response = await api.post('/auth/login', { email, password });
+      localStorage.setItem('accessToken', response.data.accessToken);
+      // Dispatch a custom event to update navbar state across components immediately
+      window.dispatchEvent(new Event('auth-change'));
+      navigate('/profile');
+    } catch (err) {
+      setError(err.response?.data?.message || 'Invalid email or password. Please try again.');
+    } finally {
+      setLoading(false);
+    }
   };
+
 
   return (
     <div className="min-h-[80vh] flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
@@ -32,6 +45,16 @@ function Login() {
             </div>
 
             <form onSubmit={handleSubmit} className="space-y-6">
+              {successMessage && (
+                <div className="p-3 bg-green-50 border border-green-200 text-green-700 dark:bg-green-950/30 dark:border-green-900/50 dark:text-green-400 rounded-xl text-sm text-center">
+                  {successMessage}
+                </div>
+              )}
+              {error && (
+                <div className="p-3 bg-red-50 border border-red-200 text-red-600 dark:bg-red-950/30 dark:border-red-900/50 dark:text-red-400 rounded-xl text-sm text-center">
+                  {error}
+                </div>
+              )}
               <div className="space-y-2">
                 <label className="text-sm font-medium text-text-light dark:text-text-dark">Email address</label>
                 <div className="relative">
@@ -52,7 +75,7 @@ function Login() {
               <div className="space-y-2">
                 <div className="flex items-center justify-between">
                   <label className="text-sm font-medium text-text-light dark:text-text-dark">Password</label>
-                  <a href="#" className="text-sm font-medium text-primary hover:text-primary-dark">Forgot password?</a>
+                  <button type="button" onClick={() => alert('Forgot password functionality is coming soon!')} className="text-sm font-medium text-primary hover:text-primary-dark focus:outline-none bg-transparent border-0 p-0">Forgot password?</button>
                 </div>
                 <div className="relative">
                   <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
@@ -71,9 +94,10 @@ function Login() {
 
               <button
                 type="submit"
-                className="w-full bg-primary hover:bg-primary-dark text-white font-semibold py-3 px-4 rounded-xl shadow-md transition-all hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 dark:focus:ring-offset-slate-900"
+                disabled={loading}
+                className="w-full bg-primary hover:bg-primary-dark text-white font-semibold py-3 px-4 rounded-xl shadow-md transition-all hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 dark:focus:ring-offset-slate-900 disabled:opacity-50 disabled:cursor-not-allowed"
               >
-                Login
+                {loading ? 'Logging in...' : 'Login'}
               </button>
             </form>
 
@@ -89,7 +113,7 @@ function Login() {
 
               <div className="mt-6">
                 <a
-                  href="http://localhost:8080/oauth2/authorization/google"
+                  href={`${process.env.REACT_APP_API_BASE_URL || 'http://localhost:8080'}/oauth2/authorization/google`}
                   className="w-full flex items-center justify-center px-4 py-3 border border-gray-300 dark:border-slate-600 rounded-xl shadow-sm bg-white dark:bg-slate-800 text-sm font-medium text-text-light dark:text-text-dark hover:bg-gray-50 dark:hover:bg-slate-700 transition-colors"
                 >
                   <img

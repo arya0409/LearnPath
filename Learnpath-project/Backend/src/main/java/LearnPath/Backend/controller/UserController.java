@@ -5,6 +5,7 @@ import LearnPath.Backend.exception.ResourceNotFoundException;
 import LearnPath.Backend.repository.UserRepository;
 import LearnPath.Backend.security.CurrentUser;
 import LearnPath.Backend.security.UserPrincipal;
+import LearnPath.Backend.payload.UserResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -20,8 +21,9 @@ public class UserController {
 
     @GetMapping("/user/me")
     @PreAuthorize("hasRole('USER')")
-    public User getCurrentUser(@CurrentUser UserPrincipal userPrincipal) {
-        return userRepository.findById(userPrincipal.getId())
+    public UserResponse getCurrentUser(@CurrentUser UserPrincipal userPrincipal) {
+        User user = userRepository.findById(userPrincipal.getId())
                 .orElseThrow(() -> new ResourceNotFoundException("User", "id", userPrincipal.getId()));
+        return new UserResponse(user.getId(), user.getName(), user.getEmail(), user.getPicture(), user.getProvider());
     }
 }
