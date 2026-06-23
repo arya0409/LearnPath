@@ -24,7 +24,13 @@ print("\nEncoded Data:")
 print(data.head())
 
 # Prepare input and output
-X = data[["branch", "year", "goal"]]
+X = data[
+    [
+        "branch", "year", "cgpa", "coding", "aptitude",
+        "internships", "goal",
+        "interest_ai", "interest_web", "interest_core"
+    ]
+]
 Y = data["recommendation"]
 
 # Split
@@ -37,12 +43,27 @@ model = RandomForestClassifier()
 model.fit(X_train, Y_train)
 
 print("\nModel trained successfully!")
+import joblib
+
+joblib.dump(model, "career_model.pkl")
+joblib.dump(le_branch, "le_branch.pkl")
+joblib.dump(le_year, "le_year.pkl")
+joblib.dump(le_goal, "le_goal.pkl")
+
+print("Model saved successfully!")
 
 # Test prediction
 sample = [[
     le_branch.transform(["CSE"])[0],
     le_year.transform([2])[0],
-    le_goal.transform(["placement"])[0]
+    8.5,
+    7,
+    6,
+    1,
+    le_goal.transform(["placement"])[0],
+    1,
+    0,
+    0
 ]]
 
 prediction = model.predict(sample)

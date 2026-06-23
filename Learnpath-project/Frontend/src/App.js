@@ -14,6 +14,8 @@ import Psychometric from "./components/PshychometricTest/Pshychometric";
 import PsychometricResult from "./components/PshychometricTest/PsychometricResult";
 import { ThemeProvider } from './context/ThemeContext';
 import FaqWidget from './components/FaqWidget';
+import Recommendation from './components/Recommendation';
+import IndustryTrends from './pages/industrytrends';
 
 function App() { 
   return (
@@ -37,6 +39,8 @@ function App() {
           <Route path="/oauth2/redirect" element={<OAuth2RedirectHandler />} />
          <Route path="/psychometric-test" element={<Psychometric />} />
         <Route path="/psychometric-result" element={<PsychometricResult />} /> 
+        <Route path="/recommendation" element={<Recommendation />} />
+        <Route path="/industrytrends" element={<IndustryTrends />} />
 
 
 
